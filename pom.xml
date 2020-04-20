@@ -74,46 +74,43 @@
     </dependencyManagement>
 
     <!--公司私服地址-->
-    <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <name>Pica 3rdParty Repository</name>
-            <url>http://192.168.141.133:8082/repository/pica-3rdParty/</url>
-        </repository>
-    </distributionManagement>
+    <!--<distributionManagement>-->
+        <!--<repository>-->
+            <!--<id>nexus</id>-->
+            <!--<name>Pica 3rdParty Repository</name>-->
+            <!--<url>http://192.168.141.110:8082/repository/pica-3rdParty/</url>-->
+        <!--</repository>-->
+    <!--</distributionManagement>-->
 
+    <!--在私服中配置，不需要再每个项目的pom文件中配置-->
+    <!--<repositories>-->
+        <!--<repository>-->
+            <!--<id>nexus</id>-->
+            <!--<url>http://192.168.141.133:8082/repository/maven-public/</url>-->
+            <!--<releases>-->
+                <!--<enabled>true</enabled>-->
+                <!--<updatePolicy>never</updatePolicy>-->
+            <!--</releases>-->
+            <!--<snapshots>-->
+                <!--<enabled>true</enabled>-->
+                <!--<updatePolicy>always</updatePolicy>-->
+            <!--</snapshots>-->
+        <!--</repository>-->
+    <!--</repositories>-->
 
-    <repositories>
-        <repository>
-            <id>nexus</id>
-            <url>http://192.168.141.133:8082/repository/maven-public/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>nexus</id>
-            <url>http://192.168.141.133:8082/repository/maven-public/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
-
-
+    <!--<pluginRepositories>-->
+        <!--<pluginRepository>-->
+            <!--<id>nexus</id>-->
+            <!--<url>http://192.168.141.133:8082/repository/maven-public/</url>-->
+            <!--<releases>-->
+                <!--<enabled>true</enabled>-->
+                <!--<updatePolicy>never</updatePolicy>-->
+            <!--</releases>-->
+            <!--<snapshots>-->
+                <!--<enabled>true</enabled>-->
+                <!--<updatePolicy>always</updatePolicy>-->
+            <!--</snapshots>-->
+        <!--</pluginRepository>-->
+    <!--</pluginRepositories>-->
 
 </project>
