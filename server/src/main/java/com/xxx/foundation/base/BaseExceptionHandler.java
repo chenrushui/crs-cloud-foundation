@@ -1,6 +1,7 @@
 package com.xxx.foundation.base;
 
 import com.pica.cloud.foundation.utils.PicaResponse;
+import com.xxx.foundation.common.base.BaseResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;

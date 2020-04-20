@@ -12,6 +12,11 @@
     <artifactId>crs-cloud-foundation-server</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>com.xxx.foundation</groupId>
+            <artifactId>crs-cloud-foundation-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <!-- Eureka Client启动类-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -90,6 +95,7 @@
         <!--</exclusion>-->
         <!--</exclusions>-->
         <!--</dependency>-->
+        <!---->
         <dependency>
             <groupId>com.xuxueli</groupId>
             <artifactId>xxl-job-core</artifactId>

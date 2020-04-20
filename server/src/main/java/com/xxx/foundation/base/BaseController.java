@@ -1,5 +1,6 @@
 package com.xxx.foundation.base;
 
+import com.xxx.foundation.common.base.BaseResult;
 import com.xxx.foundation.utils.CacheClient;
 import com.xxx.foundation.utils.RequestUtils;
 import org.apache.commons.lang.StringUtils;

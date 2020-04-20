@@ -1,5 +1,7 @@
 package com.xxx.foundation.base;
 
+import com.xxx.foundation.common.base.BaseResult;
+
 /**
  * Created on 2020/4/16 15:24
  * author:crs

@@ -26,7 +26,7 @@ import java.util.List;
 @Configuration
 @EnableSwagger2
 @ConditionalOnProperty(prefix = "swagger", value = {"enable"}, havingValue = "true")
-public class SwaggerConfig {
+public class SwaggerConfiguration {
 
     @Bean
     public Docket createRestApi() {
@@ -44,7 +44,7 @@ public class SwaggerConfig {
                 .globalOperationParameters(pars)
                 .apiInfo(this.apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage(BaseConstant.controllerBackage))
+                .apis(RequestHandlerSelectors.basePackage(BaseConstant.controllerPackage))
                 .paths(PathSelectors.any())
                 .build();
     }

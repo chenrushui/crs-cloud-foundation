@@ -7,5 +7,5 @@ package com.xxx.foundation.constant;
  */
 public class BaseConstant {
 
-    public static String controllerBackage="com.xxx.foundation.controller";
+    public static String controllerPackage="com.xxx.foundation.controller";
 }
