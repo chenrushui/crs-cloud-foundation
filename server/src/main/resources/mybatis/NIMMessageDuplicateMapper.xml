@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xxx.foundation.mapping.NIMMessageDuplicateMapper" >
+  <resultMap id="BaseResultMap" type="com.xxx.foundation.entity.NIMMessageDuplicate" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="attach" property="attach" jdbcType="VARCHAR" />
+    <result column="conv_type" property="convType" jdbcType="VARCHAR" />
+    <result column="event_type" property="eventType" jdbcType="VARCHAR" />
+    <result column="from_account" property="fromAccount" jdbcType="VARCHAR" />
+    <result column="to" property="to" jdbcType="VARCHAR" />
+    <result column="iscall" property="iscall" jdbcType="TINYINT" />
+    <result column="from_client_type" property="fromClientType" jdbcType="VARCHAR" />
+    <result column="from_device_id" property="fromDeviceId" jdbcType="VARCHAR" />
+    <result column="msg_timestamp" property="msgTimestamp" jdbcType="VARCHAR" />
+    <result column="from_nick" property="fromNick" jdbcType="VARCHAR" />
+    <result column="msg_type" property="msgType" jdbcType="VARCHAR" />
+    <result column="msgid_client" property="msgidClient" jdbcType="VARCHAR" />
+    <result column="msgid_server" property="msgidServer" jdbcType="VARCHAR" />
+    <result column="resend_flag" property="resendFlag" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="port" property="port" jdbcType="VARCHAR" />
+    <result column="antispam" property="antispam" jdbcType="VARCHAR" />
+    <result column="action" property="action" jdbcType="TINYINT" />
+    <result column="labels" property="labels" jdbcType="VARCHAR" />
+    <result column="yidun_bus_Type" property="yidunBusType" jdbcType="TINYINT" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="created_id" property="createdId" jdbcType="INTEGER" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="modified_id" property="modifiedId" jdbcType="INTEGER" />
+    <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xxx.foundation.entity.NIMMessageDuplicate" extends="BaseResultMap" >
+    <result column="body" property="body" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, attach, conv_type, event_type, from_account, to, iscall, from_client_type, from_device_id, 
+    msg_timestamp, from_nick, msg_type, msgid_client, msgid_server, resend_flag, ip, 
+    port, antispam, action, labels, yidun_bus_Type, delete_flag, created_id, created_time, 
+    modified_id, modified_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    body
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from message_duplicate
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from message_duplicate
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xxx.foundation.entity.NIMMessageDuplicate" >
+    insert into message_duplicate (id, attach, conv_type, 
+      event_type, from_account, to, 
+      iscall, from_client_type, from_device_id, 
+      msg_timestamp, from_nick, msg_type, 
+      msgid_client, msgid_server, resend_flag, 
+      ip, port, antispam, 
+      action, labels, yidun_bus_Type, 
+      delete_flag, created_id, created_time, 
+      modified_id, modified_time, body
+      )
+    values (#{id,jdbcType=INTEGER}, #{attach,jdbcType=VARCHAR}, #{convType,jdbcType=VARCHAR}, 
+      #{eventType,jdbcType=VARCHAR}, #{fromAccount,jdbcType=VARCHAR}, #{to,jdbcType=VARCHAR}, 
+      #{iscall,jdbcType=TINYINT}, #{fromClientType,jdbcType=VARCHAR}, #{fromDeviceId,jdbcType=VARCHAR}, 
+      #{msgTimestamp,jdbcType=VARCHAR}, #{fromNick,jdbcType=VARCHAR}, #{msgType,jdbcType=VARCHAR}, 
+      #{msgidClient,jdbcType=VARCHAR}, #{msgidServer,jdbcType=VARCHAR}, #{resendFlag,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR}, #{antispam,jdbcType=VARCHAR}, 
+      #{action,jdbcType=TINYINT}, #{labels,jdbcType=VARCHAR}, #{yidunBusType,jdbcType=TINYINT}, 
+      #{deleteFlag,jdbcType=INTEGER}, #{createdId,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{modifiedId,jdbcType=INTEGER}, #{modifiedTime,jdbcType=TIMESTAMP}, #{body,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xxx.foundation.entity.NIMMessageDuplicate" >
+    insert into message_duplicate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="attach != null" >
+        attach,
+      </if>
+      <if test="convType != null" >
+        conv_type,
+      </if>
+      <if test="eventType != null" >
+        event_type,
+      </if>
+      <if test="fromAccount != null" >
+        from_account,
+      </if>
+      <if test="to != null" >
+        to,
+      </if>
+      <if test="iscall != null" >
+        iscall,
+      </if>
+      <if test="fromClientType != null" >
+        from_client_type,
+      </if>
+      <if test="fromDeviceId != null" >
+        from_device_id,
+      </if>
+      <if test="msgTimestamp != null" >
+        msg_timestamp,
+      </if>
+      <if test="fromNick != null" >
+        from_nick,
+      </if>
+      <if test="msgType != null" >
+        msg_type,
+      </if>
+      <if test="msgidClient != null" >
+        msgid_client,
+      </if>
+      <if test="msgidServer != null" >
+        msgid_server,
+      </if>
+      <if test="resendFlag != null" >
+        resend_flag,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="port != null" >
+        port,
+      </if>
+      <if test="antispam != null" >
+        antispam,
+      </if>
+      <if test="action != null" >
+        action,
+      </if>
+      <if test="labels != null" >
+        labels,
+      </if>
+      <if test="yidunBusType != null" >
+        yidun_bus_Type,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="createdId != null" >
+        created_id,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="modifiedId != null" >
+        modified_id,
+      </if>
+      <if test="modifiedTime != null" >
+        modified_time,
+      </if>
+      <if test="body != null" >
+        body,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="attach != null" >
+        #{attach,jdbcType=VARCHAR},
+      </if>
+      <if test="convType != null" >
+        #{convType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null" >
+        #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="fromAccount != null" >
+        #{fromAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="to != null" >
+        #{to,jdbcType=VARCHAR},
+      </if>
+      <if test="iscall != null" >
+        #{iscall,jdbcType=TINYINT},
+      </if>
+      <if test="fromClientType != null" >
+        #{fromClientType,jdbcType=VARCHAR},
+      </if>
+      <if test="fromDeviceId != null" >
+        #{fromDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTimestamp != null" >
+        #{msgTimestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="fromNick != null" >
+        #{fromNick,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null" >
+        #{msgType,jdbcType=VARCHAR},
+      </if>
+      <if test="msgidClient != null" >
+        #{msgidClient,jdbcType=VARCHAR},
+      </if>
+      <if test="msgidServer != null" >
+        #{msgidServer,jdbcType=VARCHAR},
+      </if>
+      <if test="resendFlag != null" >
+        #{resendFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null" >
+        #{port,jdbcType=VARCHAR},
+      </if>
+      <if test="antispam != null" >
+        #{antispam,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=TINYINT},
+      </if>
+      <if test="labels != null" >
+        #{labels,jdbcType=VARCHAR},
+      </if>
+      <if test="yidunBusType != null" >
+        #{yidunBusType,jdbcType=TINYINT},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createdId != null" >
+        #{createdId,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedId != null" >
+        #{modifiedId,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedTime != null" >
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="body != null" >
+        #{body,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xxx.foundation.entity.NIMMessageDuplicate" >
+    update message_duplicate
+    <set >
+      <if test="attach != null" >
+        attach = #{attach,jdbcType=VARCHAR},
+      </if>
+      <if test="convType != null" >
+        conv_type = #{convType,jdbcType=VARCHAR},
+      </if>
+      <if test="eventType != null" >
+        event_type = #{eventType,jdbcType=VARCHAR},
+      </if>
+      <if test="fromAccount != null" >
+        from_account = #{fromAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="to != null" >
+        to = #{to,jdbcType=VARCHAR},
+      </if>
+      <if test="iscall != null" >
+        iscall = #{iscall,jdbcType=TINYINT},
+      </if>
+      <if test="fromClientType != null" >
+        from_client_type = #{fromClientType,jdbcType=VARCHAR},
+      </if>
+      <if test="fromDeviceId != null" >
+        from_device_id = #{fromDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTimestamp != null" >
+        msg_timestamp = #{msgTimestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="fromNick != null" >
+        from_nick = #{fromNick,jdbcType=VARCHAR},
+      </if>
+      <if test="msgType != null" >
+        msg_type = #{msgType,jdbcType=VARCHAR},
+      </if>
+      <if test="msgidClient != null" >
+        msgid_client = #{msgidClient,jdbcType=VARCHAR},
+      </if>
+      <if test="msgidServer != null" >
+        msgid_server = #{msgidServer,jdbcType=VARCHAR},
+      </if>
+      <if test="resendFlag != null" >
+        resend_flag = #{resendFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null" >
+        port = #{port,jdbcType=VARCHAR},
+      </if>
+      <if test="antispam != null" >
+        antispam = #{antispam,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        action = #{action,jdbcType=TINYINT},
+      </if>
+      <if test="labels != null" >
+        labels = #{labels,jdbcType=VARCHAR},
+      </if>
+      <if test="yidunBusType != null" >
+        yidun_bus_Type = #{yidunBusType,jdbcType=TINYINT},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createdId != null" >
+        created_id = #{createdId,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedId != null" >
+        modified_id = #{modifiedId,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedTime != null" >
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="body != null" >
+        body = #{body,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xxx.foundation.entity.NIMMessageDuplicate" >
+    update message_duplicate
+    set attach = #{attach,jdbcType=VARCHAR},
+      conv_type = #{convType,jdbcType=VARCHAR},
+      event_type = #{eventType,jdbcType=VARCHAR},
+      from_account = #{fromAccount,jdbcType=VARCHAR},
+      to = #{to,jdbcType=VARCHAR},
+      iscall = #{iscall,jdbcType=TINYINT},
+      from_client_type = #{fromClientType,jdbcType=VARCHAR},
+      from_device_id = #{fromDeviceId,jdbcType=VARCHAR},
+      msg_timestamp = #{msgTimestamp,jdbcType=VARCHAR},
+      from_nick = #{fromNick,jdbcType=VARCHAR},
+      msg_type = #{msgType,jdbcType=VARCHAR},
+      msgid_client = #{msgidClient,jdbcType=VARCHAR},
+      msgid_server = #{msgidServer,jdbcType=VARCHAR},
+      resend_flag = #{resendFlag,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      port = #{port,jdbcType=VARCHAR},
+      antispam = #{antispam,jdbcType=VARCHAR},
+      action = #{action,jdbcType=TINYINT},
+      labels = #{labels,jdbcType=VARCHAR},
+      yidun_bus_Type = #{yidunBusType,jdbcType=TINYINT},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      created_id = #{createdId,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      modified_id = #{modifiedId,jdbcType=INTEGER},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      body = #{body,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xxx.foundation.entity.NIMMessageDuplicate" >
+    update message_duplicate
+    set attach = #{attach,jdbcType=VARCHAR},
+      conv_type = #{convType,jdbcType=VARCHAR},
+      event_type = #{eventType,jdbcType=VARCHAR},
+      from_account = #{fromAccount,jdbcType=VARCHAR},
+      to = #{to,jdbcType=VARCHAR},
+      iscall = #{iscall,jdbcType=TINYINT},
+      from_client_type = #{fromClientType,jdbcType=VARCHAR},
+      from_device_id = #{fromDeviceId,jdbcType=VARCHAR},
+      msg_timestamp = #{msgTimestamp,jdbcType=VARCHAR},
+      from_nick = #{fromNick,jdbcType=VARCHAR},
+      msg_type = #{msgType,jdbcType=VARCHAR},
+      msgid_client = #{msgidClient,jdbcType=VARCHAR},
+      msgid_server = #{msgidServer,jdbcType=VARCHAR},
+      resend_flag = #{resendFlag,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      port = #{port,jdbcType=VARCHAR},
+      antispam = #{antispam,jdbcType=VARCHAR},
+      action = #{action,jdbcType=TINYINT},
+      labels = #{labels,jdbcType=VARCHAR},
+      yidun_bus_Type = #{yidunBusType,jdbcType=TINYINT},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      created_id = #{createdId,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      modified_id = #{modifiedId,jdbcType=INTEGER},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
