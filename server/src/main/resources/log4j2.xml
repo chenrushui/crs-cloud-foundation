@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" monitorInterval="30">
+    <properties>
+        <property name="logPath" value="${sys:LOG_PATH:-/opt/tomcat-log}"/>
+        <property name="logPatternLayout"
+                  value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%t] %class{36}.%M - %msg%xEx%n"/>
+        <property name="logRolloverSize" value="100M"/>
+        <property name="logKeepDays" value="15d"/>
+        <property name="logDirNumberOfFiles" value="300"/>
+    </properties>
+
+    <Appenders>
+        <!--CONSOLE-->
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern="${logPatternLayout}"/>
+        </Console>
+
+        <!--TRACE-->
+        <RollingFile name="TRACE" filename="${logPath}/trace.log"
+                     filepattern="${logPath}/$${date:yyyy-MM-dd}/trace-%d{yyyyMMdd}-%i.log">
+            <PatternLayout charset="UTF-8" pattern="${logPatternLayout}"/>
+            <Filters>
+                <ThresholdFilter level="debug" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="${logRolloverSize}"/>
+            </Policies>
+            <DefaultRolloverStrategy max="${logDirNumberOfFiles}">
+                <Delete basePath="${logPath}" maxDepth="3">
+                    <IfFileName glob="*/trace*.log"/>
+                    <IfLastModified age="${logKeepDays}"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!--DEBUG-->
+        <RollingFile name="DEBUG" filename="${logPath}/debug.log"
+                     filepattern="${logPath}/$${date:yyyy-MM-dd}/debug-%d{yyyyMMdd}-%i.log">
+            <PatternLayout charset="UTF-8" pattern="${logPatternLayout}"/>
+            <Filters>
+                <ThresholdFilter level="info" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="${logRolloverSize}"/>
+            </Policies>
+            <DefaultRolloverStrategy max="${logDirNumberOfFiles}">
+                <Delete basePath="${logPath}" maxDepth="3">
+                    <IfFileName glob="*/debug*.log"/>
+                    <IfLastModified age="${logKeepDays}"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!--INFO-->
+        <RollingFile name="INFO" filename="${logPath}/info.log"
+                     filepattern="${logPath}/$${date:yyyy-MM-dd}/info-%d{yyyyMMdd}-%i.log">
+            <PatternLayout charset="UTF-8" pattern="${logPatternLayout}"/>
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="${logRolloverSize}"/>
+            </Policies>
+            <DefaultRolloverStrategy max="${logDirNumberOfFiles}">
+                <Delete basePath="${logPath}" maxDepth="3">
+                    <IfFileName glob="*/info*.log"/>
+                    <IfLastModified age="${logKeepDays}"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!--WARN-->
+        <RollingFile name="WARN" filename="${logPath}/warn.log"
+                     filepattern="${logPath}/$${date:yyyy-MM-dd}/warn-%d{yyyyMMdd}-%i.log">
+            <PatternLayout charset="UTF-8" pattern="${logPatternLayout}"/>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="${logRolloverSize}"/>
+            </Policies>
+            <DefaultRolloverStrategy max="${logDirNumberOfFiles}">
+                <Delete basePath="${logPath}" maxDepth="3">
+                    <IfFileName glob="*/warn*.log"/>
+                    <IfLastModified age="${logKeepDays}"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!--ERROR-->
+        <RollingFile name="ERROR" filename="${logPath}/error.log"
+                     filepattern="${logPath}/$${date:yyyy-MM-dd}/error-%d{yyyyMMdd}-%i.log">
+            <PatternLayout charset="UTF-8" pattern="${logPatternLayout}"/>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="${logRolloverSize}"/>
+            </Policies>
+            <DefaultRolloverStrategy max="${logDirNumberOfFiles}">
+                <Delete basePath="${logPath}" maxDepth="3">
+                    <IfFileName glob="*/error*.log"/>
+                    <IfLastModified age="${logKeepDays}"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <CatAppender name="CatAppender"/>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="TRACE"/>
+            <appender-ref ref="DEBUG"/>
+            <appender-ref ref="INFO"/>
+            <appender-ref ref="WARN"/>
+            <appender-ref ref="ERROR"/>
+            <appender-ref ref="CatAppender"/>
+        </Root>
+          
+        <Logger name="org.apache.catalina.startup.DigesterFactory" level="error"/>
+                
+        <Logger name="org.apache.catalina.util.LifecycleBase" level="error"/>
+                
+        <Logger name="org.apache.coyote.http11.Http11NioProtocol" level="warn"/>
+                
+        <logger name="org.apache.sshd.common.util.SecurityUtils" level="warn"/>
+                
+        <Logger name="org.apache.tomcat.util.net.NioSelectorPool" level="warn"/>
+                
+        <Logger name="org.crsh.plugin" level="warn"/>
+                
+        <logger name="org.crsh.ssh" level="warn"/>
+                
+        <Logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="error"/>
+                
+        <Logger name="org.hibernate.validator.internal.util.Version" level="warn"/>
+                
+        <logger name="org.springframework.boot.actuate.autoconfigure.CrshAutoConfiguration" level="warn"/>
+                
+        <logger name="org.springframework.boot.actuate.endpoint.jmx" level="warn"/>
+                
+        <logger name="org.thymeleaf" level="warn"/>
+    </Loggers>
+</Configuration>
